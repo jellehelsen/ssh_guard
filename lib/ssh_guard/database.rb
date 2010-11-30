@@ -1,3 +1,4 @@
+require "rubygems"
 require "sequel"
 module SshGuard
   class Database
@@ -18,7 +19,7 @@ module SshGuard
 
     def should_block?(ip_address)
       count = @db[:entries].where({:ip_address => ip_address}).count 
-      count > 5
+      count > 10
     end
   end  
 end
