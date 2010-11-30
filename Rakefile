@@ -15,10 +15,11 @@ Jeweler::Tasks.new do |gem|
   gem.name = "ssh_guard"
   gem.homepage = "http://github.com/jellehelsen/ssh_guard"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{guardian angel for ssh}
+  gem.description = %Q{It protects your server from ssh password guessing bots.}
   gem.email = "jelle.helsen@hcode.be"
   gem.authors = ["Jelle Helsen"]
+  gem.executables = %w{ssh_guard}
   # Include your dependencies below. Runtime dependencies are required when using your gem,
   # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
   #  gem.add_runtime_dependency 'jabber4r', '> 0.1'
