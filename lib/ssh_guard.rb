@@ -23,7 +23,7 @@ module SshGuard
       @database = Database.new
       @parser   = Parser.new
       @firewall = FirewallAdapters::IPFWAdapter.new
-      @log_file = "secure.log"
+      @log_file = "/var/log/secure.log"
     end
 
     def <<(line)
