@@ -10,13 +10,7 @@ describe SshGuard::Core do
   it "parses an input line" do
     lambda { @guard << "input" }.should_not raise_error
   end
-  
-  it "should add an entry for possible break-in attempt" do
-    msg = "Nov 24 21:15:53 mini sshd[55670]: reverse mapping checking getaddrinfo for client-200.106.67.47.speedy.net.pe [200.106.67.47] failed - POSSIBLE BREAK-IN ATTEMPT!"
-    @guard.database.should_receive(:add_entry).with({:timestamp => Time.parse("Nov 24 21:15:53"), :ip_address => "200.106.67.47"})
-    @guard << msg
-  end
-  
+    
   it "should ignore other input" do
     @guard.database.should_not_receive(:add_entry)
     @guard << "other input"
@@ -27,7 +21,7 @@ describe SshGuard::Core do
     @guard.stub(:firewall).and_return(m=mock())
     m.stub(:blocked?).and_return(false)
     m.should_receive(:block_host)
-    msg = "Nov 24 21:15:53 mini sshd[55670]: reverse mapping checking getaddrinfo for client-200.106.67.47.speedy.net.pe [200.106.67.47] failed - POSSIBLE BREAK-IN ATTEMPT!"
+    msg = "Nov 24 17:03:55 mini sshd[47367]: Invalid user staff from 221.13.5.92"
     @guard << msg
   end
   

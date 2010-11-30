@@ -8,7 +8,7 @@ module SshGuard
     attr_reader :firewall
     class Parser
       def parse_line(line)
-        if line =~ /Did not receive identification string/ || line =~ /POSSIBLE BREAK-IN ATTEMPT!/ || line =~ /invalid user/i || line =~ /authentication error/
+        if line =~ /Did not receive identification string/ || line =~ /invalid user/i || line =~ /authentication error/
           ip_address = line.match(/\d+\.\d+.\d+.\d+/).to_s
           timestamp = Time.parse(line.match(/(^.+) mini/)[1])
           {:ip_address => ip_address, :timestamp => timestamp}
