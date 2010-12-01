@@ -6,7 +6,7 @@ module SshGuard
       end
       def block_host(host)
         unless blocked?(host)
-          `ipfw add deny tcp from #{host} to me ssh`
+          `ipfw add 100 deny tcp from #{host} to me ssh`
           @logger.warn("Blocking host #{host}!")
         end
       end

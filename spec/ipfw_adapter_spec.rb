@@ -6,7 +6,7 @@ describe SshGuard::FirewallAdapters::IPFWAdapter do
   end
   it "should call ipfw" do
     @firewall.stub(:blocked?).and_return(false)
-    @firewall.should_receive(:`).with("ipfw add deny tcp from 192.168.1.1 to me ssh")
+    @firewall.should_receive(:`).with("ipfw add 100 deny tcp from 192.168.1.1 to me ssh")
     @firewall.block_host('192.168.1.1')
   end
   it "should not block a host when it is already blocked" do
