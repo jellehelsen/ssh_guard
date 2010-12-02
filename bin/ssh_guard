@@ -2,5 +2,29 @@
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require "ssh_guard"
+if ARGV.include?('-i')
+  File.open("/Library/LaunchDaemons/be.hcode.SshGuard.plist", 'w') do |f|
+    f.write <<-EOF
+      <?xml version="1.0" encoding="UTF-8"?>
+      <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+      <plist version="1.0">
+      <dict>
+      <key>KeepAlive</key>
+      <true/>
+      <key>Label</key>
+      <string>be.hcode.SshGuard</string>
+      <key>ProgramArguments</key>
+      <array>
+      <string>ssh_guard</string>
+      </array>
+      <key>RunAtLoad</key>
+      <true/>
+      </dict>
+      </plist>
+    EOF
+  end
+  `launchct load /Library/LaunchDaemons/be.hcode.SshGuard.plist`
+else
+  SshGuard::Core.new.start
+end
 
-SshGuard::Core.new.start
