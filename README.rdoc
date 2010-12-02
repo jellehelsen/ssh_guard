@@ -1,6 +1,6 @@
 = SshGuard
 
-SshGuard is guardian angel for ssh. It protects your server from ssh password guessing bots. It scans the log file for ssh errors containing 'Invalid user' of "authentication error". After 10 failed authentications the ip address of the failing host will be blocked by the firewall.
+SshGuard is guardian angel for ssh. It protects your server from ssh password guessing bots. It scans the log file for ssh errors containing 'Invalid user' or "authentication error". After 10 failed authentications the ip address of the failing host will be blocked by the firewall.
 
 At the moment it only works on Mac OS X. Porting it to other unix based platforms should not be that hard.
 
